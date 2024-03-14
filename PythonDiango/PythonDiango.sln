@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32510.428
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "PythonDiango", "PythonDiango\PythonDiango.pyproj", "{981DDFE2-A68D-4802-9CC6-B5587622B2DF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{981DDFE2-A68D-4802-9CC6-B5587622B2DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{981DDFE2-A68D-4802-9CC6-B5587622B2DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {51DA0354-7CE7-4B79-9E78-9AAF176BF9BE}
+	EndGlobalSection
+EndGlobal
