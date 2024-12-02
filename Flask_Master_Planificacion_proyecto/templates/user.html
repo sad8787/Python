@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle del Usuario</title>
+    
+</head>
+<body>
+    <h1>Detalle del Usuario</h1>
+    {% if user %}
+    <p><strong>ID:</strong> {{ user[0] }}</p>
+    <p><strong>Nombre:</strong> {{ user[1] }}</p>
+    <p><strong>Email:</strong> {{ user[2] }}</p>
+    <a href="/users">Volver a la lista de usuarios</a>
+    {% else %}
+    <p>Usuario no encontrado.</p>
+    <a href="/users">Volver a la lista de usuarios</a>
+    {% endif %}
+</body>
+</html>
