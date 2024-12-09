@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Login</title>
+</head>
+<body>
+    <h1>email</h1>
+    <form id="registerForm"   action="/sendemail" method="POST"> 
+        <label>asunto:</label>
+        <input type="text" class="form-control" id="asunto" name="asunto" placeholder="asunto">
+        <label>nombre:</label>
+        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="nombre">        
+        <label>Email:</label>
+        <input type="email" class="form-control" id="email" name="email" placeholder="email">
+        <label>body:</label>
+        <input type="text" class="form-control" id="body" name="body" placeholder="body"><br>
+        
+        <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+    </form>
+
+    <script>
+        // Obtén el formulario y agrega un evento de envío
+        const form = document.getElementById('registerForm');
+
+        form.addEventListener('submit', async (event) => {
+            // Evita que el formulario se envíe de forma predeterminada
+            event.preventDefault();
+
+            // Obtén los valores de los campos(asunto,nombre,email,body):
+            const asunto = document.getElementById('asunto').value;
+            const nombre = document.getElementById('nombre').value;
+            const email = document.getElementById('email').value;
+            const body = document.getElementById('body').value;
+
+            // Crea un objeto JSON con los datos del formulario
+            const data = {                
+                asunto: asunto,
+                nombre: nombre,
+                email:email,
+                body:body
+            };
+
+            try {
+                // Envía los datos como JSON al backend usando fetch
+                const response = await fetch('/sendemail', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                // Maneja la respuesta del servidor
+                if (response.ok) {
+                    const result = await response.json();
+                    alert(`sendmail : ${result.message}`);
+                } else {
+                    const error = await response.json();
+                    alert(`Error: ${error.message}`);
+                }
+            } catch (error) {
+                console.error('Error al enviar JSON:', error);
+                alert('Hubo un problema al enviar los datos.');
+            }
+        });
+    </script>
+    
+</body>
+</html>

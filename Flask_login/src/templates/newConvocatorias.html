@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>new Proyecto</title>
+</head>
+<body>
+    <h1>new Proyecto</h1>
+    name, fecha,url,descripcion, id_user
+    <form id="registerForm"   action="/newconvocatoria" method="POST"> 
+        <label>Name:</label>
+        <input type="text" class="form-control" id="name" name="name" placeholder="name">
+        <label>url:</label>
+        <input type="text" class="form-control" id="url" name="url" placeholder="url">
+        <label>descripcion:</label>
+        <input type="text" class="form-control" id="descripcion" name="descripcion" placeholder="descripcion"><br>
+        
+        <input type="date" id="fecha" name="fecha" 
+            min="2023-01-01" 
+            max="2040-01-01">
+
+        
+        <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+    </form>
+
+    <script>
+        // Obtén el formulario y agrega un evento de envío
+        const form = document.getElementById('registerForm');
+
+        form.addEventListener('submit', async (event) => {
+            // Evita que el formulario se envíe de forma predeterminada
+            event.preventDefault();
+
+            // Obtén los valores de los campos
+            const name = document.getElementById('name').value;
+            const url = document.getElementById('url').value;
+            const descripcion = document.getElementById('descripcion').value;
+            const fecha = document.getElementById('fecha').value;
+
+            // Crea un objeto JSON con los datos del formulario
+            const data = {                
+                name: name,
+                url: url,
+                descripcion:descripcion,
+                fecha:fecha
+            };
+
+            try {
+                // Envía los datos como JSON al backend usando fetch
+                const response = await fetch('/newconvocatoria', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                // Maneja la respuesta del servidor
+                if (response.ok) {
+                    const result = await response.json();
+                    alert(`register : ${result.message}`);
+                } else {
+                    const error = await response.json();
+                    alert(`Error: ${error.message}`);
+                }
+            } catch (error) {
+                console.error('Error al enviar JSON:', error);
+                alert('Hubo un problema al enviar los datos.');
+            }
+        });
+    </script>
+    
+</body>
+</html>
