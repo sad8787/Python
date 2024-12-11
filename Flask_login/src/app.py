@@ -1,17 +1,18 @@
 from flask import Flask,render_template,request , jsonify, render_template, redirect, url_for, session
 #from config import Config, db
 from werkzeug.security import generate_password_hash, check_password_hash
-import jwt
-import datetime
+#import jwt
+#import datetime
 import json
-
-from modelos.user_model import User
+import getpass
+import configparser
+#from modelos.user_model import User
 from data.comfiguracion import Configuracion
 
 from data.mysqldb import ejecutaSQL 
 from control import control
 from control.controlEmail import enviar_correo
-import data.dbSql as dbSql
+#import data.dbSql as dbSql
 
 
 app = Flask(__name__)
@@ -21,9 +22,66 @@ config= configuracion.config
 dir_path= configuracion.dir_path
 
 
+
 control.iniciarDB(config)
+port1=user1=password1=database1=""
+host1=0
+counter=0
+while_True=True
+config_Parser = configparser.ConfigParser()     
+config_Parser.read(dir_path)
+print(config_Parser['mysql']['host'])
 
 
+while while_True:
+
+    counter = counter + 1
+    if counter == 5:
+        host1 = config_Parser['mysql']['host']
+        port1 = config_Parser['mysql']['port']
+        user1 = config_Parser['mysql']['user'] # Cambiar al usuario de tu base de datos
+        password1 = config_Parser['mysql']['password']  # Cambiar a la contraseña de tu base de datos
+        database1 = config_Parser['mysql']['database']  # Cambiar al nombre de tu base de datos
+        break
+    print("----------- Desea entrar los datos para la coneccion a la base de datos?  Y or N")
+    input1 = input()
+    if((input1=="Y") or (input1=="y") or (input1=="S")or (input1=="s")):
+        print("Entre el host")
+        host1 = input()
+        print("Entre el Port")
+        port1 = input()
+        print("Entre el user")
+        user1 = input() # Cambiar al usuario de tu base de datos
+        print("Entre el password")
+        password1 = input() # Cambiar a la contraseña de tu base de datos
+        print("Entre la base de datos")
+        database1 = input() 
+
+        mail = input('Enter your email:')        
+        pswd = getpass.getpass('Password:')
+        print(f'''host: {host1} port: {port1}  user: {user1}  database: { database1 }   {mail}''')
+        print("----------- Esta de acurdo con los datos datos?  Y or N")
+        input1 = input()
+        if((input1=="Y") or (input1=="y") or (input1=="S")or (input1=="s")):
+            config_Parser['mysql']['host'] = host1
+            config_Parser['mysql']['port'] =port1
+            config_Parser['mysql']['user'] =user1 # Cambiar al usuario de tu base de datos
+            config_Parser['mysql']['password'] = password1  # Cambiar a la contraseña de tu base de datos
+            config_Parser['mysql']['database'] = database1  # Cambiar al nombre de tu base de datos
+
+            config_Parser['email']['email']  = mail
+            config_Parser['email']['password'] = pswd
+
+            # Guardar los cambios de vuelta al archivo
+            with open(f'{dir_path}', 'w') as configfile:
+                config_Parser.write(configfile)
+            break
+    else:
+        host1=config_Parser['mysql']['host']       
+        user1 = config_Parser['mysql']['user'] # Cambiar al usuario de tu base de datos
+        password1 = config_Parser['mysql']['password']  # Cambiar a la contraseña de tu base de datos
+        database1 = config_Parser['mysql']['database']  # Cambiar al nombre de tu base de datos        
+        break
 
 
 
