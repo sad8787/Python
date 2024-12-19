@@ -61,7 +61,12 @@ def appDoTotal():
     print("appDoTotal")
     try:
         if (request.method=='POST'):  
-            data = request.json
+	   if request.is_json:
+                data = request.get_json()
+                
+            else:
+                data = request.form              
+            
             print(f'post {str(data)} ' )            
             controlador=data.get('controlador')
             action=data.get('action')
