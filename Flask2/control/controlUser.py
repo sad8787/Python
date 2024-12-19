@@ -34,21 +34,23 @@ def control_User(data,db,bcrypt):
         return login(data,db, bcrypt )
 
 def add_user(data,db,bcrypt):
-    try:                      
+    try:     
+            print ("add user")                 
             name = data.get('name')
             email = data.get('email')  
             password = data.get('password')  
-
+            print(f'{email}')
             if not email or not password or not name:
                 return jsonify({"error": "Todos los datos son requeridos"}), 400
 
     except Exception as err:        
             return jsonify({"success": str( False),"ok": str(False) ,"controlador": "users","accion":"add_user","code": "201"   ,"message": {str(err)}}), 201
     
-    existe =User.query.filter_by(email=email).first()
-    if existe :
+    existe = User.query.filter_by(email=email).first()    
+    if (existe) :
         if(existe.activo):
-            return jsonify({"error": "El correo ya está registrado"}), 400
+            print(f'{str(existe.id)} {str(existe.activo)}')
+            return jsonify({"success": False,"ok": False,"message": "El correo ya está registrado"}), 200
         else:
             token = ts.dumps(new_user.email, salt='email-confirm-key')
             confirm_url = url_for('confirm_email', token=token, _external=True)        
@@ -110,9 +112,10 @@ def list_user(data,db):
     for user in users:
         list_user.append( {"id": user.id, "name": user.name, "email": user.email,"is_admin": user.is_admin, "activo": user.activo})
     
-    return jsonify({"success": True,"ok": True,"controlador": "users",
+                   
+    return {"success": True,"ok": True,"controlador": "users",
                     "accion":"list","code": "201","message": "list user",
-                    "users":list_user,"len":len(list_user)}), 201    
+                    "users":list_user,"len":len(list_user)}    
  
 def searchById(data,db):
 

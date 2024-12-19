@@ -4,7 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
 from configparser import ConfigParser
-
+import json
 from models.modelos import Convocatoria,Proyecto,User,db
 
 from control.controlUser import control_User
@@ -53,23 +53,38 @@ def deleteOrUpdate(data,db):
     if(controlador=="convocatoria"):
         print("convocatoria")
 
-
+def admin(db):  
+    existe = User.query.filter_by(email="admin@gmai.com").first()
+    if(existe):
+            print ("ok")
+    else:
+            hashed_password = bcrypt.generate_password_hash("admin").decode('utf-8')
+            new_user = User(name="admin", email="admin@gmai.com",password=hashed_password,is_admin=True,activo=True)
+            db.session.add(new_user)
+            db.session.commit()
+            print(f"Usuario inicial agregado: {new_user.name}")  
+   
 
 #total
 @app.route('/sadiel/api',methods=['GET', 'POST'])
 def appDoTotal():
-    print("appDoTotal")
+    print("todo")
+    
     try:
         if (request.method=='POST'):  
-	   if request.is_json:
+            if request.is_json:
                 data = request.get_json()
-                
+                print("si") 
             else:
-                data = request.form              
+                data = request.form
+                print("no") 
             
-            print(f'post {str(data)} ' )            
+            print(f'post {str(data)} ' )   
+            
+                  
             controlador=data.get('controlador')
             action=data.get('action')
+            print(f'post {controlador} {action}' )   
             if(action=="delete"or action=="update"):
                 return deleteOrUpdate(data,db)            
                 
@@ -87,7 +102,7 @@ def appDoTotal():
                     print("email")
     except Exception as err:
             print(f"Unexpected {err=}, {type(err)=}")
-            return jsonify({"success": False,"ok":False,"recurso": controlador,"action":action, "error": str(err),"code":str(err)})
+            return jsonify({"success": False,"ok":False, "error": str(err),"code":str(err)})
 
 @app.route('/confirm/<token>', methods=['GET'])
 def confirm_email(token):
@@ -147,6 +162,8 @@ def searchuser():
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
+        admin(db)
+        
     app.run(host='0.0.0.0', port=5000, debug=True)
 
     #app.run(debug=True)
