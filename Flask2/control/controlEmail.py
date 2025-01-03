@@ -52,9 +52,19 @@ def control_sendMail(data):
                     #erroroperacion incorecta        
     try:
         result= enviar_correo(asunto,nombre,email,body)
-        result={"success": str( result),"ok": str(result) ,"controlador": "email","accion":"email","code": "201"   ,"message": "successfully!"}                 
+        message= "NOT successfully"
+        if(result):
+            message= "successfully"
+        
+        result={"success": str( result),"ok": str(result) ,
+                "controlador": data.get('controlador'),
+                    "accion":data.get('accion'),
+                    "status": 200,
+                    "code": "200",
+                    "message": message}                 
     except Exception as err:
         print(f"Unexpected {err=}, {type(err)=}")
         result={"success": str(False),"ok":str(False),"controlador": "email","accion":"email", "error": str(err),"code":str(err) ,"message": "unsuccessfully!"}
     return result
+
  

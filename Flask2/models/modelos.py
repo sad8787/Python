@@ -27,3 +27,9 @@ class Convocatoria(db.Model):
     url = db.Column(db.String(200), nullable=False)
     descripcion = db.Column(db.Text, nullable=True)
     activo = db.Column(db.Boolean, default=True)
+
+
+class Imagen(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(120), nullable=False)
+    dir_path = db.Column(db.String(200), nullable=False)
