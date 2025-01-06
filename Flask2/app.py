@@ -13,6 +13,7 @@ from control.controlProyecto import control_Proyecto
 from control.controlConvocatoria import control_Convocatoria
 from control.controlEmail import control_sendMail
 from control.controlImagen import upload_image,get_images,control_image
+from control.controlCurso import control_Curso
 
 from itsdangerous import URLSafeTimedSerializer
 ts = URLSafeTimedSerializer('supersecretkey')
@@ -106,6 +107,8 @@ def appDoTotal():
                 
                 if(controlador=="convocatoria"):
                     return control_Convocatoria(data,db,bcrypt)      
+                if(controlador=="curso"):
+                    return control_Curso(data,db,bcrypt)
 
                 if(controlador=="email"):
                     return jsonify(  control_sendMail(data)),200
