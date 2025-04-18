@@ -1,0 +1,53 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\sadie\\OneDrive\\Documentos\\Git\\Python\\Echo Telegram\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{7B4C2CB4-E7AB-4733-BEAF-7BD61A275225}|Echo Telegram.pyproj|C:\\Users\\sadie\\OneDrive\\Documentos\\Git\\Python\\Echo Telegram\\Echo_Telegram.py||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{7B4C2CB4-E7AB-4733-BEAF-7BD61A275225}|Echo Telegram.pyproj|solutionrelative:Echo_Telegram.py||{8B382828-6202-11D1-8870-0000F87579D2}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{605322a2-17ae-43f4-b60f-766556e46c87}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Echo_Telegram.py",
+              "DocumentMoniker": "C:\\Users\\sadie\\OneDrive\\Documentos\\Git\\Python\\Echo Telegram\\Echo_Telegram.py",
+              "RelativeDocumentMoniker": "Echo_Telegram.py",
+              "ToolTip": "C:\\Users\\sadie\\OneDrive\\Documentos\\Git\\Python\\Echo Telegram\\Echo_Telegram.py",
+              "RelativeToolTip": "Echo_Telegram.py",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAsAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
+              "WhenOpened": "2025-04-18T16:17:37.157Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
